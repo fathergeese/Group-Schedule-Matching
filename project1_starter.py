@@ -48,7 +48,7 @@ def find_available_times(schedule_1, schedule_2, daily_activity_1, daily_activit
             end_time_float2 = float(end_time2.replace(':', '.'))
             end_time_float_m2 = float(end_time_m2.replace(':', '.'))
             compare_time_float2 = float(compare_time2.replace(':', '.'))
-            # ------- Start algorithm -------
+
             if end_time_float_m1 <= compare_time_float1 and end_time_float1 >= end_time_float2 and end_time_float_m1 <= compare_time_float2:
                 if compare_time_float1 <= compare_time_float2:
                     available_times.append([end_time1, compare_time1])
@@ -62,23 +62,17 @@ def find_available_times(schedule_1, schedule_2, daily_activity_1, daily_activit
     return available_times
 
 
-# Read input from 'input.txt' file
 result = []
 with open('input.txt', 'r') as file:
     lines = file.readlines()
 
-for i in range(0, len(lines), 5):
-    # person1_schedule = eval(file.readline())
-    # person1_daily_activity = eval(file.readline())
-    # person2_schedule = eval(file.readline())
-    # person2_daily_activity = eval(file.readline())
-    # duration_of_meeting = eval(file.readline())
+for i in range(0, len(lines), 6):
     person1_schedule = eval(lines[i])
     person1_daily_activity = eval(lines[i + 1])
     person2_schedule = eval(lines[i + 2])
     person2_daily_activity = eval(lines[i + 3])
     duration_of_meeting = eval(lines[i+4])
-    # Find available meeting times
+
     available_meeting_times = find_available_times(person1_schedule, person2_schedule, person1_daily_activity, person2_daily_activity, duration_of_meeting)
     result.append(available_meeting_times)
     print(available_meeting_times)
