@@ -62,18 +62,27 @@ def find_available_times(schedule_1, schedule_2, daily_activity_1, daily_activit
     return available_times
 
 
-
 # Read input from 'input.txt' file
+result = []
 with open('input.txt', 'r') as file:
-    person1_schedule = eval(file.readline())
-    person1_daily_activity = eval(file.readline())
-    person2_schedule = eval(file.readline())
-    person2_daily_activity = eval(file.readline())
-    duration_of_meeting = eval(file.readline())
+    lines = file.readlines()
 
-# Find available meeting times
-available_meeting_times = find_available_times(person1_schedule, person2_schedule, person1_daily_activity, person2_daily_activity, duration_of_meeting)
-print(available_meeting_times)
+for i in range(0, len(lines), 5):
+    # person1_schedule = eval(file.readline())
+    # person1_daily_activity = eval(file.readline())
+    # person2_schedule = eval(file.readline())
+    # person2_daily_activity = eval(file.readline())
+    # duration_of_meeting = eval(file.readline())
+    person1_schedule = eval(lines[i])
+    person1_daily_activity = eval(lines[i + 1])
+    person2_schedule = eval(lines[i + 2])
+    person2_daily_activity = eval(lines[i + 3])
+    duration_of_meeting = eval(lines[i+4])
+    # Find available meeting times
+    available_meeting_times = find_available_times(person1_schedule, person2_schedule, person1_daily_activity, person2_daily_activity, duration_of_meeting)
+    result.append(available_meeting_times)
+    print(available_meeting_times)
 
 with open("output.txt", "w") as outfile:
-    outfile.write(str(available_meeting_times))
+    for result in result:
+        outfile.write(str(result))
