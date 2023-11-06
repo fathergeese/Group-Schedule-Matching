@@ -75,8 +75,8 @@ for i in range(0, len(lines), 6):
 
     available_meeting_times = find_available_times(person1_schedule, person2_schedule, person1_daily_activity, person2_daily_activity, duration_of_meeting)
     result.append(available_meeting_times)
-    print(available_meeting_times)
 
 with open("output.txt", "w") as outfile:
     for result in result:
         outfile.write(str(result))
+        outfile.write('\n')
